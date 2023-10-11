@@ -13,7 +13,16 @@ python src/python/producer.py
 free -h
 
 echo "Starting consumer, ci seems to have a problem with this"
-python src/python/consumer.py &
+
+docker run \
+    -d \
+    --network=host \
+    --name=consumer \
+    -v "$(pwd)/src/python":/app \
+    python:3.11.6 \
+    bash -c "pip install -r /app/requirements.txt && python /app/consumer.py"
+
+docker logs consumer
 
 free -h
 
