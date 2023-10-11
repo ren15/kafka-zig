@@ -6,10 +6,14 @@ export PYTHONBUFFERED=1
 
 pip install -r src/python/requirements.txt
 
-python src/python/producer.py &
+free -h
 
-sleep 2
+python src/python/producer.py
+
+free -h
 
 python src/python/consumer.py &
 
-sleep 5
+free -h
+
+sleep 20
