@@ -30,6 +30,7 @@ ls -lah src/python/producer.log
 cat src/python/producer.log
 
 echo "Use rpk to consume the topic"
+docker exec redpanda-0 bash -c 'echo "12321" | rpk topic produce test'
 docker exec redpanda-0 rpk topic consume test -n 5
 
 echo "Starting consumer, ci seems to have a problem with this"
