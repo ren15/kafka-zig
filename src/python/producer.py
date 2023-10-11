@@ -1,4 +1,5 @@
-from kafka import KafkaProducer, KafkaAdminClient, NewTopic
+from kafka import KafkaProducer
+from kafka.admin import NewTopic, KafkaAdminClient
 
 print("start producer")
 
