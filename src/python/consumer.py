@@ -24,6 +24,7 @@ def set_offset_last_N(consumer, topics, last_n):
         else:
             position_to_set = last_position - last_n
 
+        print("Setting offset for topic {} to {}".format(tp.topic, position_to_set))
         consumer.seek(tp, position_to_set)
     return last_positions
 
