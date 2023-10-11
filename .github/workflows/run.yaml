@@ -6,7 +6,6 @@ jobs:
   build:
     name: build
     runs-on: ubuntu-latest
-    timeout-minutes: 5
 
     steps:
       - uses: actions/checkout@v3
@@ -16,14 +15,17 @@ jobs:
           lscpu && free -h
 
       - name: Start redpanda
+        timeout-minutes: 5
         run: |
           bash scripts/redpanda/start.sh
 
       - name: Run python
+        timeout-minutes: 5
         run: |
           bash src/python/run.sh
 
       - name: Setup and run c
+        timeout-minutes: 5
         run: |
           bash src/c/setup.sh
           bash src/c/run_example.sh
