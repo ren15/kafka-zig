@@ -1,6 +1,10 @@
-pip install -r src/python/requirements.txt
+#!/bin/bash
+
+set -uexo pipefail
 
 export PYTHONBUFFERED=0
+
+pip install -r src/python/requirements.txt
 
 python src/python/producer.py &
 

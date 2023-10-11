@@ -1,5 +1,7 @@
 from kafka import KafkaProducer
 
+print("start producer")
+
 
 producer = KafkaProducer(bootstrap_servers="localhost:19092")
 
