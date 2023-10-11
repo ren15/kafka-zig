@@ -8,6 +8,9 @@ pip install -r src/python/requirements.txt
 
 free -h
 
+echo "Sleeping for 60 seconds"
+sleep 60
+
 python src/python/producer.py
 
 free -h
@@ -15,7 +18,6 @@ free -h
 echo "Starting consumer, ci seems to have a problem with this"
 
 docker rm -f consumer || true
-
 docker run \
     -d \
     --network=host \
@@ -27,9 +29,9 @@ docker run \
 docker logs consumer
 
 free -h
+echo "Sleeping for 60 seconds"
+sleep 60
 
-echo "Sleeping for 20 seconds"
-sleep 20
 
 docker logs consumer
 cat src/python/consumer.log

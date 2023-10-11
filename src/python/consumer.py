@@ -1,7 +1,6 @@
 from kafka import KafkaConsumer, TopicPartition
 
 print("start consumer")
-exit(0)
 
 cosumer = KafkaConsumer(bootstrap_servers="localhost:19092")
 
