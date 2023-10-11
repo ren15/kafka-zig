@@ -2,7 +2,7 @@
 
 set -uexo pipefail
 
-export PYTHONBUFFERED=0
+export PYTHONBUFFERED=1
 
 pip install -r src/python/requirements.txt
 
