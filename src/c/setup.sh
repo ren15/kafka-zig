@@ -4,7 +4,7 @@ set -ueox pipefail
 
 pushd `dirname $0`
 
-wget -c https://github.com/confluentinc/librdkafka/archive/refs/tags/v2.2.0.zip
+wget -qc https://github.com/confluentinc/librdkafka/archive/refs/tags/v2.2.0.zip
 
 unzip -f v2.2.0.zip
 
