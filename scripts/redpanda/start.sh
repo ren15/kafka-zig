@@ -7,4 +7,6 @@ docker compose up -d
 
 docker ps -a
 
+docker logs redpanda-0
+
 
