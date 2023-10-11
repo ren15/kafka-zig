@@ -31,5 +31,7 @@ last_position = set_offset_last_N(cosumer, ["test"], 1000)
 
 for message in cosumer:
     print(message)
-    if message.offset == last_position[message.topic]:
+    if message.offset == last_position[message.topic] - 1:
         break
+
+print("consumer finishes")
