@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer, TopicPartition
 
-cosumer = KafkaConsumer("test", bootstrap_servers="localhost:19092")
+cosumer = KafkaConsumer(bootstrap_servers="localhost:19092")
 
 
 def set_offset_last_N(consumer, topics, last_n):
