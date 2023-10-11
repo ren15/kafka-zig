@@ -2,7 +2,7 @@ pip install -r src/python/requirements.txt
 
 export PYTHONBUFFERED=0
 
-python src/python/provider.py &
+python src/python/producer.py &
 
 sleep 10
 
