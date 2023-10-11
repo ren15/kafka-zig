@@ -1,5 +1,11 @@
 pip install -r src/python/requirements.txt
 
-python src/python/provider.py
+export PYTHONBUFFERED=0
 
-python src/python/consumer.py
+python src/python/provider.py &
+
+sleep 10
+
+python src/python/consumer.py &
+
+sleep 10
