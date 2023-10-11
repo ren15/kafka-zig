@@ -13,3 +13,7 @@ jobs:
       - name: check system
         run: |
           lscpu && free -h
+
+      - name: Start redpanda
+        run: |
+          bash scripts/redpanda/start.sh
