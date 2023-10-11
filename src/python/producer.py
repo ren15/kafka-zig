@@ -5,10 +5,13 @@ print("start producer")
 
 producer = KafkaProducer(bootstrap_servers="localhost:19092")
 
-for i in range(10):
-    producer.send("test", b"message %d" % i)
-    print("sent message %d" % i)
+f_list = []
 
-producer.flush()
+for i in range(10):
+    f_list.append(producer.send("test", b"message %d" % i))
+
+for f in f_list:
+    print("futures resolved: ", f.get())
+
 
 print("producer finishes")
