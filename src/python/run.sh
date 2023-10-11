@@ -4,14 +4,30 @@ set -uexo pipefail
 
 export PYTHONBUFFERED=1
 
-pip install -r src/python/requirements.txt
+pushd "$(dirname "$0")" 
+docker build -t python_with_kafka .
+popd
 
-echo "Sleeping for 60 seconds"
-sleep 60
+
+
+echo "Sleeping for 10 seconds"
+sleep 10
 
 echo "Starting producer"
-python src/python/producer.py
+docker rm -f producer || true
+docker run \
+    --name=producer \
+    -d \
+    --network=host \
+    -v "$(pwd)/src/python":/app \
+    python_with_kafka \
+    bash -c "python /app/producer.py > /app/producer.log 2>&1"
+
+sleep 10
 echo "Producer finished"
+
+ls -lah src/python/producer.log
+cat src/python/producer.log
 
 
 echo "Starting consumer, ci seems to have a problem with this"
@@ -22,15 +38,12 @@ docker run \
     -d \
     --network=host \
     -v "$(pwd)/src/python":/app \
-    python:3.11.6 \
-    bash -c "pip install -r /app/requirements.txt && \
-        python /app/consumer.py > /app/consumer.log 2>&1"
-
-docker logs consumer
+    python_with_kafka \
+    bash -c "python /app/consumer.py > /app/consumer.log 2>&1"
 
 free -h
-echo "Sleeping for 60 seconds"
-sleep 60
+echo "Sleeping for 10 seconds"
+sleep 10
 
 
 docker logs consumer
