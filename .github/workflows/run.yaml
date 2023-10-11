@@ -17,3 +17,7 @@ jobs:
       - name: Start redpanda
         run: |
           bash scripts/redpanda/start.sh
+
+      - name: Run python
+        run: |
+          bash src/python/run.sh

@@ -17,10 +17,10 @@ services:
       # from inside the same Docker network.
       # Use the external addresses to connect to the Redpanda brokers'
       # from outside the Docker network.
-      - --advertise-kafka-addr internal://redpanda-0:9092,external://$KFK_EXTERNAL_ADDRESS
+      - --advertise-kafka-addr internal://redpanda-0:9092,external://127.0.0.1:19092
       - --pandaproxy-addr internal://0.0.0.0:8082,external://0.0.0.0:18082
       # Address the broker advertises to clients that connect to the HTTP Proxy.
-      - --advertise-pandaproxy-addr internal://redpanda-0:8082,external://$KFK_EXTERNAL_ADDRESS
+      - --advertise-pandaproxy-addr internal://redpanda-0:8082,external://127.0.0.1:19092
       - --schema-registry-addr internal://0.0.0.0:8081,external://0.0.0.0:18081
       # Redpanda brokers use the RPC API to communicate with eachother internally.
       - --rpc-addr redpanda-0:33145
@@ -33,8 +33,6 @@ services:
       - --mode dev-container
       # enable logs for debugging.
       - --default-log-level=error
-    environment:
-      KFK_EXTERNAL_ADDRESS: "127.0.0.1:19092"
     image: docker.redpanda.com/redpandadata/redpanda:v23.1.11
     container_name: redpanda-0
     volumes:
