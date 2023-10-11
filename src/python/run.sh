@@ -8,8 +8,8 @@ pip install -r src/python/requirements.txt
 
 python src/python/producer.py &
 
-sleep 10
+sleep 2
 
 python src/python/consumer.py &
 
-sleep 10
+sleep 5
