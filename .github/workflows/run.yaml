@@ -18,10 +18,11 @@ jobs:
         run: |
           bash scripts/redpanda/start.sh
 
-      # - name: Setup zig
-      #   run: |
-      #     bash src/zig/setup.sh
-
       - name: Run python
         run: |
           bash src/python/run.sh
+
+      - name: Setup and run c
+        run: |
+          bash src/c/setup.sh
+          bash src/c/run_example.sh

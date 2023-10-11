@@ -203,22 +203,26 @@ int main(int argc, char **argv) {
          * since a rebalance may happen at any time.
          * Start polling for messages. */
 
-        int retry_cnt = 0;
+        int retry_cnt;
+        retry_cnt = 0;
 
         while (run) {
                 rd_kafka_message_t *rkm;
 
+                if (retry_cnt > 10) {
+                        fprintf(stderr, "retry_cnt: %d\n", retry_cnt);
+                        break;
+                }
+
                 rkm = rd_kafka_consumer_poll(rk, 100);
-                if (!rkm)
-                        retry_cnt++;
+                if (!rkm){
+                        retry_cnt+=1;
                         continue; /* Timeout: no message within 100ms,
                                    *  try again. This short timeout allows
                                    *  checking for `run` at frequent intervals.
                                    */
-                if (retry_cnt > 10) {
-                        fprintf(stderr, "retry_cnt: %d\n", retry_cnt);
-                        retry_cnt = 0;
                 }
+                retry_cnt = 0;
 
                 /* consumer_poll() will return either a proper message
                  * or a consumer error (rkm->err is set). */
