@@ -29,7 +29,7 @@ def set_offset_last_N(consumer, topics, last_n):
     return last_positions
 
 
-last_position = set_offset_last_N(cosumer, ["test"], 1000)
+last_position = set_offset_last_N(cosumer, ["test"], 20)
 
 
 for message in cosumer:

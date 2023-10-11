@@ -22,7 +22,7 @@ docker run \
     --name=consumer \
     -v "$(pwd)/src/python":/app \
     python:3.11.6 \
-    bash -c "pip install -r /app/requirements.txt && python /app/consumer.py"
+    bash -c "pip install -r /app/requirements.txt && python /app/consumer.py > /app/consumer.log 2>&1"
 
 docker logs consumer
 
@@ -32,3 +32,4 @@ echo "Sleeping for 20 seconds"
 sleep 20
 
 docker logs consumer
+cat src/python/consumer.log
