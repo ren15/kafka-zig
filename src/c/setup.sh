@@ -1,3 +1,6 @@
+#!/bin/bash
+
+set -ueox pipefail
 
 pushd `dirname $0`
 
@@ -7,9 +10,9 @@ unzip -f v2.2.0.zip
 
 mkdir -p lib 
 cd librdkafka-2.2.0
-./configure --prefix=$PWD/../lib
+./configure --prefix=$PWD/../install_prefix
 make -j$(nproc)
 make install
-ls -lah ../lib/
+ls -lah ../install_prefix
 
 popd

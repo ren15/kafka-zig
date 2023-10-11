@@ -1,3 +1,4 @@
 *.zip
 librdkafka*
+install_prefix/
 lib/
