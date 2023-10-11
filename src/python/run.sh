@@ -14,6 +14,8 @@ free -h
 
 echo "Starting consumer, ci seems to have a problem with this"
 
+docker rm -f consumer || true
+
 docker run \
     -d \
     --network=host \
@@ -28,3 +30,5 @@ free -h
 
 echo "Sleeping for 20 seconds"
 sleep 20
+
+docker logs consumer
