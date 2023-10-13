@@ -30,7 +30,21 @@ jobs:
           bash src/c/setup.sh
           bash src/c/run_example.sh
 
+
+  setup-zig:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: check system
+        run: |
+          lscpu && free -h
+
       - name: Setup zig
         timeout-minutes: 5
         run: |
           bash src/zig/setup.sh
+
+  
