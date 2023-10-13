@@ -4,7 +4,6 @@ name: build
 
 jobs:
   build:
-    name: build
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +31,6 @@ jobs:
 
 
   setup-zig:
-    name: build
     runs-on: ubuntu-latest
 
     steps:
