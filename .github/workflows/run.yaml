@@ -29,3 +29,8 @@ jobs:
         run: |
           bash src/c/setup.sh
           bash src/c/run_example.sh
+
+      - name: Setup zig
+        timeout-minutes: 5
+        run: |
+          bash src/zig/setup.sh
